@@ -62,6 +62,12 @@ app.post("/send-message", async (req, res) => {
   const client = getClient();
   const status = getStatus();
 
+  
+  if (!client) {
+    console.error("❌ Client is null or undefined.");
+    return res.status(500).json({ success: false, message: "WhatsApp client is not initialized" });
+  }
+
   // if (!status.ready) {
   //   return res.status(400).json({ success: false, message: "Client not ready." });
   // }
